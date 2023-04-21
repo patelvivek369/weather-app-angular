@@ -1,0 +1,34 @@
+@import '../../../shared/styles/global.scss';
+
+.location_search {
+    .form_group {
+        box-shadow: $shadow;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        .pin_icon{
+            width: 20px;
+        }
+        .search_icon {
+            width: 17px;
+            padding: 0;
+            border: 0;
+            background-color: transparent;
+        }
+        svg {
+            display: inline-block;
+        }
+        input {
+            border: 0;
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}

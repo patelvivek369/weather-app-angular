@@ -1,0 +1,79 @@
+@import '../../../shared/styles/global.scss';
+
+.weather_weeks {
+  margin-top: 30px;
+  display: flex;
+  overflow-x: scroll;
+  .temp_box {
+      text-align: center;
+      color: #000;
+      background: #fff;
+      font-weight: 700;
+      padding: 10px;
+      width: auto !important;
+      border: 3px solid transparent;
+      transition: all .3s ease-out;
+      min-width: 90px;
+      box-shadow: 0px 4px 14px 0px rgb(55 55 82 / 23%);
+      border-radius: 10px;
+      margin: 10px;
+      .w_forcast_icon {
+          width: 100%;
+          margin: 15px auto 10px;
+          img {
+              width: 100%;
+              max-width: 100%;
+              height: auto;
+          }
+      }
+      &.w_active {
+          border-color: $primary_color;
+          background-color: #fffefb;
+      }
+      &:hover {
+        border-color: $primary_color;
+        background-color: #fffefb;
+        cursor: pointer;
+      }
+  }
+}
+
+
+.weather_time {
+  box-shadow: $shadow;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  .current_weather {
+      font-size: 3em;
+      font-weight: 700;
+      .weatcher_icon {
+          width: 40px;
+          display: inline-block;
+          margin-left: 10px;
+      }
+  }
+  .weather_humidity {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 30px;
+      div {
+          width: 50%;
+          background-color: rgba($color: $primary_color, $alpha: 0.08);
+          padding: 15px;
+          &:not(:last-child) {
+              margin-right: 15px;
+          }
+          span {
+              display: block;
+              color: #000;
+              font-weight: 700;
+              &:last-child {
+                  font-weight: 400;
+              }
+          }
+      }
+  }
+  
+}

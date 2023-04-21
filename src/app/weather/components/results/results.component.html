@@ -1,0 +1,71 @@
+<div *ngIf="forecast; else noResults">
+  <div class="weather_time">
+    <div class="current_weather">
+      <span>{{ forecast?.city.name }} - {{ forecast?.city.country }} - </span>
+      <span>{{ forecast?.list[0]?.main.temp | toDegrees }}</span>
+      <span class="weatcher_icon" ><img src="http://openweathermap.org/img/w/{{forecast?.list[0]?.weather[0].icon}}.png" alt=""></span>
+    </div>
+  </div>
+  <div class="weather_weeks">
+    <button class="temp_box" *ngFor="let item of forecast?.list" [ngClass]="{'w_active': selectedData == item}" (click)="selectData(item.dt)">
+      <div class="w_week">{{item.dt | unixToDate }}</div>
+      <div class="w_temprature">{{ item.main.temp_max | toDegrees }} <span class="text_gray">{{ item.main.temp_min | toDegrees }}</span></div>
+      <div class="w_forcast_icon">
+        <img src="http://openweathermap.org/img/w/{{item.weather[0].icon}}.png" alt="">
+      </div>
+      <div class="w_forcast_type text_gray">{{item.weather[0].main}}</div>
+    </button>
+  </div>
+
+  <div class="weather_time" *ngIf="!!selectedData">
+    <div>
+      <div class="current_weather">
+        <span>{{ selectedData.main.temp | toDegrees }}</span>
+        <span class="weatcher_icon" ><img src="http://openweathermap.org/img/w/{{selectedData.weather[0].icon}}.png" alt=""></span>
+      </div>
+      <div class="weather_humidity">
+        <div class="presure">
+          <span>Min Temp</span>
+          <span>{{selectedData.main.temp_min | toDegrees}}</span>
+        </div>
+        <div class="humidty">
+          <span>Max Temp</span>
+          <span>{{selectedData.main.temp_max | toDegrees}}</span>
+        </div>
+      </div>
+      <div class="weather_humidity">
+        <div class="presure">
+          <span>Presure</span>
+          <span>{{selectedData.main.pressure}} hpa</span>
+        </div>
+        <div class="humidty">
+          <span>Humidty</span>
+          <span>{{selectedData.main.humidity}}%</span>
+        </div>
+      </div>
+      <div class="weather_humidity">
+        <div class="presure">
+          <span>Feels Like</span>
+          <span>{{selectedData.main.feels_like | toDegrees}}</span>
+        </div>
+        <div class="humidty">
+          <span>Wind Speed</span>
+          <span>{{selectedData.wind.speed}}m/s NNE</span>
+        </div>
+      </div>
+    </div>
+    <div class="weather_humidity">
+      <div class="presure">
+        <span>Sunrise</span>
+        <span>{{forecast?.city.sunrise | unixToDate}}</span>
+      </div>
+      <div class="humidty">
+        <span>Sunset</span>
+        <span>{{forecast?.city.sunset | unixToDate}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noResults>
+  <p class="no-results">No cities loaded. Search for a city forecast?.</p>
+</ng-template>
